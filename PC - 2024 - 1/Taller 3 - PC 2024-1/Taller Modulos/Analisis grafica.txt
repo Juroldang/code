@@ -1,0 +1,7 @@
+Analisis de grafica
+Presentado por:
+Nicolas Fuentes Ramos
+Santiago Cardenas Rodriguez
+Juan Jose Roldan Garay
+
+La grafica nos muestra una devaluacion del Dolar y del Euro frente al Peso Colombiano a lo largo del 2023. Lo que fue en su momento un cambio positivo para la economia nacional. La grafica se construye con dos ejes, uno de tiempo que va desde Enero del 2023 hasta Agosto del 2023 y otra que muestra el tipo de cambio a COP, es decir el valor del Euro o Dolar en Pesos colombianos en ese momento, las lineas son facilmente diferenciable pues la grafica cuenta con una leyenda que nos indica que color corresponde a cual tipo de cambio siendo el rojo para el Euro y el negro para el Dolar.
