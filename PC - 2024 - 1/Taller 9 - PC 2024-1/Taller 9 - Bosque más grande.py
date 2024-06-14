@@ -4,18 +4,29 @@ def main():
     terrain = []
     for _ in range(n):
         terrain.append(list(input()))
-    print(bg(n, 0, 0, terrain, True, 0))
-def bg(n, y, x, t, new, F):
-    current = F
-    if x >= n or y >= n: return
-    if not new:
-        if t[x][y] != 'T':
-            bg(n, y + 1, x, t, True, current)
-            bg(n, y, x + 1, t, True, current)
-        else:
-            t[x][y] = 'O'
-            current = 1 + bg(n, y + 1, x, t, False, current) + bg(n, y, x + 1, t, False, current)
+    print(biggest_forest(terrain, n))
+
+
+def counting_trees(terrain, n, j, i, forests, forest):
+    if i < 0 or i >= n or j >= n or j < 0 or j >= n or terrain[i][j] != 'T': return
     else:
-        if t[x][y] != 'T':
-            bg(n, y + 1, x, t, True, 0)
-            bg(n, y, x + 1, t, True, 0)
+        forests[forest] += 1
+        terrain[i][j] = 'V'
+        counting_trees(terrain, n, j, i + 1, forests, forest)
+        counting_trees(terrain, n, j + 1, i, forests, forest)
+        counting_trees(terrain, n, j, i - 1, forests, forest)
+        counting_trees(terrain, n, j - 1, i, forests, forest)
+
+
+def biggest_forest(terrain, n):
+    forests = {}
+    for i in range(n):
+        for j in range(n):
+            if terrain[i][j] == 'T':
+                forest = len(forests) + 1
+                forests[forest] = 0
+                counting_trees(terrain, n, j, i, forests, forest)
+    return max(forests.values())
+
+
+main()

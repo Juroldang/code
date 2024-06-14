@@ -8,24 +8,20 @@ Nombres de los integrantes del grupo:
     - Juan José Roldán Garay.
 '''
 
+__author__ = 'Juan_Roldan'
+
 def redimensionar(imagen_una_fila, num_columnas):
     '''
     Recibe como entrada la lista imagen_una_fila de una dimensión
     y retorna una lista de listas, cada una de longitud num_columnas,
     conteniendo los valores de imagen_una_fila.
     '''
-
-    x = round(len(imagen_una_fila) / num_columnas)
-    y = imagen_una_fila[0]
-
-    if type(y) == tuple:
-        y = len(y)
-        z = np.array(imagen_una_fila).reshape(x, num_columnas, y)
-        z = list(map(list, list(z)))
-    else:
-        z = [imagen_una_fila[num_columnas * i:num_columnas * (i + 1)] for i in
-             range(int(len(imagen_una_fila) / num_columnas))]
-    return z
+    longitud = round(len(imagen_una_fila) / num_columnas)
+    if type(imagen_una_fila[0]) == tuple: rgb = 3
+    else: rgb = 1
+    imagen = np.array(imagen_una_fila).reshape(longitud, num_columnas, rgb)
+    imagen = list(map(list, list(imagen)))
+    return imagen
 
 
 def cargar_imagen(archivo):
@@ -49,7 +45,6 @@ def reflejar_vertical(matriz):
     '''
     Retorna una copia de matriz invirtiendo el orden de sus filas.
     '''
-    # En este espacio debe ir su implementación de reflejar_vertical
     imgvolteada = []
     for i in range(len(matriz)):
         imgvolteada.append(matriz[len(matriz) - i - 1])
@@ -60,7 +55,6 @@ def reflejar_horizontal(matriz):
     '''
     Retorna una copia de matriz invirtiendo el orden de sus columnas.
     '''
-    # En este espacio debe ir su implementación de reflejar_horizontal
     matrizh = []
     for i in range(len(matriz)):
         matrizh.append(matriz[i][::-1])
@@ -78,7 +72,6 @@ def crear_collage(matriz):
     Finalmente, las filas F a 2F-1 y las columnas C a 2C-1 de collage contienen
     una copia de matriz reflejada tanto horizontal como verticalmente.
     '''
-    # En este espacio debe ir su implementación de crear_collage
     collage = []
     matriz_horizontal = reflejar_horizontal(matriz)
     matriz_vertical = reflejar_vertical(matriz)
@@ -90,7 +83,6 @@ def crear_collage(matriz):
     return collage
 
 
-# Debe sustituir el nombre del archivo.
 archivo = 'imagen.jpg'
 
 ## Código de prueba 1 - Prueba de redimensionar
